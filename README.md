@@ -1,5 +1,5 @@
 # SaveableEntities
-This package adds the ability for applications using Entity Framework to handle concurrency conflicts automatically. This package should only be used with projects using EntityFramework version 6.x.x. 
+This package adds the ability for applications using Entity Framework to handle concurrency conflicts automatically. This package should only be used with projects using EntityFramework version 7.x.x. 
 
 ## ISaveableEntities Interface
 This adds the `SaveChangesAsync` method to an interface. This will allow changes to the entities to be saved to the database.
