@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>6.0.0</Version>
+        <Version>7.0.0</Version>
         <Title>EntityFrameworkCore.Concurrency</Title>
         <Authors>Owen Krueger</Authors>
         <RootNamespace>EntityFrameworkCore.Concurrency</RootNamespace>
