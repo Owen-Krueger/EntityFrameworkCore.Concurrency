@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>6.0.0</Version>
+        <Title>EntityFrameworkCore.Concurrency</Title>
+        <Authors>Owen Krueger</Authors>
+        <RootNamespace>EntityFrameworkCore.Concurrency</RootNamespace>
+        <Description>For handling concurrency conflicts in EntityFramework.</Description>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageProjectUrl>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageTags>EntityFramework;Concurrency;Database;DbContext</PackageTags>
+        <RepositoryUrl>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency/releases/tag/v6.0>0</PackageReleaseNotes>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\..\LICENSE">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Include="..\..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{07B4E2B2-B306-4640-BB63-C24A152E3883}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3EEA7362-25B7-42F8-9672-44B0212716A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore.Concurrency.Tests", "tests\EntityFrameworkCore.Concurrency.Tests\EntityFrameworkCore.Concurrency.Tests.csproj", "{50982BBD-FD02-4E3E-9107-A7F6D9C37B24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore.Concurrency", "src\EntityFrameworkCore.Concurrency\EntityFrameworkCore.Concurrency.csproj", "{54847583-8358-4E0A-94BE-F034068E1E11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50982BBD-FD02-4E3E-9107-A7F6D9C37B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50982BBD-FD02-4E3E-9107-A7F6D9C37B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50982BBD-FD02-4E3E-9107-A7F6D9C37B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50982BBD-FD02-4E3E-9107-A7F6D9C37B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54847583-8358-4E0A-94BE-F034068E1E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54847583-8358-4E0A-94BE-F034068E1E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54847583-8358-4E0A-94BE-F034068E1E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54847583-8358-4E0A-94BE-F034068E1E11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{50982BBD-FD02-4E3E-9107-A7F6D9C37B24} = {3EEA7362-25B7-42F8-9672-44B0212716A4}
+		{54847583-8358-4E0A-94BE-F034068E1E11} = {07B4E2B2-B306-4640-BB63-C24A152E3883}
+	EndGlobalSection
+EndGlobal
