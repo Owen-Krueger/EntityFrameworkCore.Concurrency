@@ -16,7 +16,7 @@
         <PackageTags>EntityFramework;Concurrency;Database;DbContext</PackageTags>
         <RepositoryUrl>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency/releases/tag/v6.0>0</PackageReleaseNotes>
+        <PackageReleaseNotes>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency/releases/tag/v6.0.0</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
