@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EntityFrameworkCore.Concurrency.Entities;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Update;
@@ -10,7 +11,7 @@ namespace EntityFrameworkCore.Concurrency.Tests;
 
 public class SaveableEntitiesTests
     {
-        private DbContextOptions<TestEntities> options;
+        private DbContextOptions<InterfaceTestEntities> options;
         private const string value1 = "value1";
 
         [SetUp]
@@ -18,24 +19,9 @@ public class SaveableEntitiesTests
         {
             var connection = new SqliteConnection("Filename=:memory:");
             connection.Open();
-            options = new DbContextOptionsBuilder<TestEntities>()
+            options = new DbContextOptionsBuilder<InterfaceTestEntities>()
                 .UseSqlite(connection)
                 .Options;
-        }
-
-        [Test]
-        public void SaveChangesWithConflictResolutionAsync_NoParameters_DbUpdateConcurrencyExceptionThrown()
-        {
-            var mock = new AutoMocker();
-            var entry = mock.GetMock<IUpdateEntry>();
-            var entries = new List<IUpdateEntry>() { entry.Object };
-            var exception = new DbUpdateConcurrencyException(string.Empty, entries);
-            var testEntities = mock.GetMock<ITestEntities>();
-            testEntities.Setup(x => x.SaveChangesAsync(CancellationToken.None))
-                .ThrowsAsync(exception);
-            Assert.ThrowsAsync<DbUpdateConcurrencyException>(() =>
-                testEntities.Object.SaveChangesWithConflictResolutionAsync()
-            );
         }
 
         [Test]
@@ -45,11 +31,11 @@ public class SaveableEntitiesTests
             var entry = mock.GetMock<IUpdateEntry>();
             var entries = new List<IUpdateEntry>() { entry.Object };
             var exception = new DbUpdateConcurrencyException(string.Empty, entries);
-            var testEntities = mock.GetMock<ITestEntities>();
+            var testEntities = mock.GetMock<ISaveableTestEntities>();
             testEntities.Setup(x => x.SaveChangesAsync(CancellationToken.None))
                 .ThrowsAsync(exception);
             Assert.ThrowsAsync<DbUpdateConcurrencyException>(() =>
-                testEntities.Object.SaveChangesWithConflictResolutionAsync(ConcurrencyConflictApproach.Default)
+                testEntities.Object.SaveChangesAsync(ConcurrencyConflictApproach.Default)
             );
         }
 
@@ -60,11 +46,11 @@ public class SaveableEntitiesTests
             var entry = mock.GetMock<IUpdateEntry>();
             var entries = new List<IUpdateEntry>() { entry.Object };
             var exception = new DbUpdateConcurrencyException(string.Empty, entries);
-            var testEntities = mock.GetMock<ITestEntities>();
+            var testEntities = mock.GetMock<ISaveableTestEntities>();
             testEntities.Setup(x => x.SaveChangesAsync(CancellationToken.None))
                 .ThrowsAsync(exception);
             Assert.ThrowsAsync<DbUpdateConcurrencyException>(() =>
-                testEntities.Object.SaveChangesWithConflictResolutionAsync(ConcurrencyConflictApproach.Default, 3)
+                testEntities.Object.SaveChangesAsync(ConcurrencyConflictApproach.Default, 3)
             );
         }
 
@@ -72,15 +58,15 @@ public class SaveableEntitiesTests
         public async Task SaveChangesWithConflictResolutionAsync_RecordModifiedForceUpdate_PreviousValueOverwritten()
         {
             string value2 = "value2";
-            var database1 = new TestEntities(options);
+            var database1 = new InterfaceTestEntities(options);
             await SetUpDatabase1Async(database1);
-            ITestEntities database2 = new TestEntities(options);
+            ISaveableTestEntities database2 = new InterfaceTestEntities(options);
             var model2 = database2.TestModels.First();
             model2.TestModelString = value2;
             model2.Version = Guid.NewGuid();
             await database2.SaveChangesAsync();
 
-            int result = await database1.SaveChangesWithConflictResolutionAsync(ConcurrencyConflictApproach.ForceUpdate);
+            int result = await database1.SaveChangesAsync(ConcurrencyConflictApproach.ForceUpdate);
 
             Assert.That(result, Is.EqualTo(1));
             var record = database1.TestModels.First();
@@ -91,15 +77,15 @@ public class SaveableEntitiesTests
         public async Task SaveChangesWithConflictResolutionAsync_RecordModifiedSkipConflicts_PreviousValueRemains()
         {
             string value2 = "value2";
-            var database1 = new TestEntities(options);
+            var database1 = new InterfaceTestEntities(options);
             await SetUpDatabase1Async(database1);
-            ITestEntities database2 = new TestEntities(options);
+            ISaveableTestEntities database2 = new InterfaceTestEntities(options);
             var model2 = database2.TestModels.First();
             model2.TestModelString = value2;
             model2.Version = Guid.NewGuid();
             await database2.SaveChangesAsync();
 
-            int result = await database1.SaveChangesWithConflictResolutionAsync(ConcurrencyConflictApproach.SkipConflicts);
+            int result = await database1.SaveChangesAsync(ConcurrencyConflictApproach.SkipConflicts);
 
             Assert.That(result, Is.EqualTo(1));
             var record = database1.TestModels.First();
@@ -109,14 +95,14 @@ public class SaveableEntitiesTests
         [Test]
         public async Task SaveChangesWithConflictResolutionAsync_RecordRemovedForceUpdate_RecordReadded()
         {
-            var database1 = new TestEntities(options);
+            var database1 = new InterfaceTestEntities(options);
             await SetUpDatabase1Async(database1);
-            ITestEntities database2 = new TestEntities(options);
+            ISaveableTestEntities database2 = new InterfaceTestEntities(options);
             var model2 = database2.TestModels.First();
             database2.TestModels.Remove(model2);
             await database2.SaveChangesAsync();
 
-            int result = await database1.SaveChangesWithConflictResolutionAsync(ConcurrencyConflictApproach.ForceUpdate);
+            int result = await database1.SaveChangesAsync(ConcurrencyConflictApproach.ForceUpdate);
 
             Assert.That(result, Is.EqualTo(1));
             var record = database1.TestModels.First();
@@ -126,20 +112,20 @@ public class SaveableEntitiesTests
         [Test]
         public async Task SaveChangesWithConflictResolutionAsync_RecordRemovedSkipConflicts_RecordRemainsRemoved()
         {
-            var database1 = new TestEntities(options);
+            var database1 = new InterfaceTestEntities(options);
             await SetUpDatabase1Async(database1);
-            ITestEntities database2 = new TestEntities(options);
+            ISaveableTestEntities database2 = new InterfaceTestEntities(options);
             var model2 = database2.TestModels.First();
             database2.TestModels.Remove(model2);
             await database2.SaveChangesAsync();
 
-            int result = await database1.SaveChangesWithConflictResolutionAsync(ConcurrencyConflictApproach.SkipConflicts);
+            int result = await database1.SaveChangesAsync(ConcurrencyConflictApproach.SkipConflicts);
 
             Assert.That(result, Is.Zero);
             Assert.That(database1.TestModels.Count(), Is.Zero);
         }
 
-        private static async Task SetUpDatabase1Async(TestEntities testEntities)
+        private static async Task SetUpDatabase1Async(InterfaceTestEntities testEntities)
         {
             await testEntities.Database.EnsureCreatedAsync();
             testEntities.TestModels.Add(new TestModel());
@@ -150,25 +136,14 @@ public class SaveableEntitiesTests
         }
     }
 
-    public class TestModel
-    {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int TestModelId { get; set; } = 1;
-
-        public string TestModelString { get; set; } = string.Empty;
-
-        [ConcurrencyCheck]
-        public Guid Version { get; set; }
-    }
-
-    public class TestEntities : DbContext, ITestEntities
+    public class InterfaceTestEntities : DbContext, ISaveableTestEntities
     {
         public DbSet<TestModel> TestModels { get; set; }
 
-        public TestEntities(DbContextOptions<TestEntities> dbContextOptions) : base(dbContextOptions) { }
+        public InterfaceTestEntities(DbContextOptions<InterfaceTestEntities> dbContextOptions) : base(dbContextOptions) { }
     }
 
-    public interface ITestEntities : ISaveableEntities
+    public interface ISaveableTestEntities : ISaveableEntities
     {
         DbSet<TestModel> TestModels { get; set; }
     }
