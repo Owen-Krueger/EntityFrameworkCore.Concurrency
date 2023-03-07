@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace EntityFrameworkCore.Concurrency;
+namespace EntityFrameworkCore.Concurrency.Entities;
 
 /// <summary>
 /// Marks the entities as being able to save changes to modify data in the database.
