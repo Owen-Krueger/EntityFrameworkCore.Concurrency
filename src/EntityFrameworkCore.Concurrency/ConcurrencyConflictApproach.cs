@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace EntityFrameworkCore.Concurrency;
 
 /// <summary>
