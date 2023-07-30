@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>7.1.0</Version>
+        <Version>7.2.0</Version>
         <Title>EntityFrameworkCore.Concurrency</Title>
         <Authors>Owen Krueger</Authors>
         <RootNamespace>EntityFrameworkCore.Concurrency</RootNamespace>
@@ -19,8 +19,12 @@
         <PackageReleaseNotes>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency/releases/tag/v7.1.0</PackageReleaseNotes>
     </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
+    <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.20" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.9" />
     </ItemGroup>
 
     <ItemGroup>
