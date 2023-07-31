@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "EntityFrameworkCore"
+        # Ignore major updates for EntityFrameworkCore due to Microsoft's major
+        # versioning being synced with the framework version.
+        update-types: ["version-update:semver-major"]
+      
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
