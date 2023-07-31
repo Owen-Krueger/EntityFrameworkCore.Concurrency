@@ -1,5 +1,6 @@
 # SaveableEntities and DbContextExtensions
-This package adds the ability for applications using Entity Framework to handle concurrency conflicts automatically. These changes can either be done on interfaces/classes that extend the `ISaveableEntities` interface or `DbContext` objects. This package should only be used with projects using EntityFramework version 7.x.x. 
+This package adds the ability for applications using Entity Framework to handle concurrency conflicts automatically. These changes can either be done on interfaces/classes that extend the `ISaveableEntities` interface or `DbContext` objects. Using this package requires the project to be on .NET 6.0 or newer. These packages should only be used with projects using EntityFramework version 6.x.x or higher on .NET 6.0 or version 7.x.x on .NET 7.0.
+
 
 ## ISaveableEntities Interface
 This adds the `SaveChangesAsync` method to an interface. This will allow changes to the entities to be saved to the database.
