@@ -40,6 +40,24 @@ public class SaveableEntitiesTests
         }
 
         [Test]
+        public async Task SaveChangesWithConflictResolutionAsync_DefaultApproachWithRetrySuccess_SaveSuccess()
+        {
+            var mock = new AutoMocker();
+            var entry = mock.GetMock<IUpdateEntry>();
+            var entries = new List<IUpdateEntry>() { entry.Object };
+            var exception = new DbUpdateConcurrencyException(string.Empty, entries);
+            var testEntities = mock.GetMock<ISaveableTestEntities>();
+            testEntities.SetupSequence(x => x.SaveChangesAsync(CancellationToken.None))
+                .ThrowsAsync(exception)
+                .ThrowsAsync(exception)
+                .ReturnsAsync(1);
+            
+            int result = await testEntities.Object.SaveChangesAsync(ConcurrencyConflictApproach.Default, 3);
+            
+            Assert.That(result, Is.EqualTo(1));
+        }
+        
+        [Test]
         public void SaveChangesWithConflictResolutionAsync_DefaultApproachWithRetry_DbUpdateConcurrencyExceptionThrown()
         {
             var mock = new AutoMocker();

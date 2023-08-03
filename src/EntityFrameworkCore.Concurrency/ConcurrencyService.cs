@@ -31,6 +31,11 @@ internal static class ConcurrencyService
             {
                 if (approach == ConcurrencyConflictApproach.Default)
                 {
+                    if (attemptCount <= retryCount) // Retry save.
+                    {
+                        continue;
+                    }
+                    
                     throw;
                 }
 
