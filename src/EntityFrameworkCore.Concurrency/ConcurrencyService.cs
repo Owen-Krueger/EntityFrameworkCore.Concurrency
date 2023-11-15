@@ -20,7 +20,7 @@ internal static class ConcurrencyService
     /// <exception cref="OperationCanceledException">If the <see cref="CancellationToken" /> is canceled.</exception>
     internal static async Task<int> SaveChangesAsync(Func<Task<int>> method, ConcurrencyConflictApproach approach, int retryCount)
     {
-        int attemptCount = 0;
+        var attemptCount = 0;
         do
         {
             try
