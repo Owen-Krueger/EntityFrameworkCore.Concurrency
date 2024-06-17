@@ -1,3 +1,10 @@
+# 8.0.1 (2024-06-17)
+## Misc
+- Upgrade Microsoft.EntityFrameworkCore.Sqlite packages to latest
+    - .NET 6.0 (6.0.31)
+    - .NET 7.0 (7.0.20)
+    - .NET 8.0 (8.0.6)
+
 # 8.0.0 (2023-11-15)
 ## Features
 - Added .NET 8.0 as a framework to use.

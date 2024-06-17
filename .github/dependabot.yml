@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: "weekly"
     ignore:
-      - dependency-name: "EntityFrameworkCore"
+      - dependency-name: "Microsoft.EntityFrameworkCore"
         # Ignore major updates for EntityFrameworkCore due to Microsoft's major
         # versioning being synced with the framework version.
         update-types: ["version-update:semver-major"]
