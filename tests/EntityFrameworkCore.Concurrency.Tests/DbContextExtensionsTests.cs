@@ -1,9 +1,6 @@
 ﻿using EntityFrameworkCore.Concurrency.Context;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Update;
-using Moq;
-using Moq.AutoMock;
 
 namespace EntityFrameworkCore.Concurrency.Tests;
 

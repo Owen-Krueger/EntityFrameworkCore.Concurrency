@@ -1,3 +1,9 @@
+# 8.1.0 (2025-09-08)
+## Changes
+- Add support for .NET 9.0
+- Remove support for .NET 6.0 and .NET 7.0
+- Upgrade Microsoft.EntityFrameworkCore.Sqlite packages to latest
+
 # 8.0.1 (2024-06-17)
 ## Misc
 - Upgrade Microsoft.EntityFrameworkCore.Sqlite packages to latest
