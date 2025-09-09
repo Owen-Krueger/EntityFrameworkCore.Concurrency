@@ -4,19 +4,20 @@
         <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>8.1.0</Version>
+        <Version>8.2.0</Version>
         <Title>EntityFrameworkCore.Concurrency</Title>
         <Authors>Owen Krueger</Authors>
         <RootNamespace>EntityFrameworkCore.Concurrency</RootNamespace>
         <Description>For handling concurrency conflicts in EntityFramework.</Description>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <PackageProjectUrl>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageTags>EntityFramework;Concurrency;Database;DbContext</PackageTags>
         <RepositoryUrl>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency/releases/tag/v8.1.0</PackageReleaseNotes>
+        <PackageReleaseNotes>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency/releases/tag/v8.2.0</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">

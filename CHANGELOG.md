@@ -1,3 +1,7 @@
+# 8.2.0 (2025-09-08)
+## Changes
+- Generate XML documentation.
+
 # 8.1.0 (2025-09-08)
 ## Changes
 - Add support for .NET 9.0
