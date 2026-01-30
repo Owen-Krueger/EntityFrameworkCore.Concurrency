@@ -2,6 +2,9 @@
 
 namespace EntityFrameworkCore.Concurrency.Context;
 
+/// <summary>
+/// Extensions for <see cref="DbContext" />.
+/// </summary>
 public static class DbContextExtensions
 {
     /// <summary>
