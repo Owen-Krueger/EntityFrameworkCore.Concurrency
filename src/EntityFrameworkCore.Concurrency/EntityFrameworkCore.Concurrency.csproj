@@ -4,7 +4,7 @@
         <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>8.3.0</Version>
+        <Version>8.3.1</Version>
         <Title>EntityFrameworkCore.Concurrency</Title>
         <Authors>Owen Krueger</Authors>
         <RootNamespace>EntityFrameworkCore.Concurrency</RootNamespace>
@@ -17,7 +17,7 @@
         <PackageTags>EntityFramework;Concurrency;Database;DbContext</PackageTags>
         <RepositoryUrl>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageReleaseNotes>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency/releases/tag/v8.3.0</PackageReleaseNotes>
+        <PackageReleaseNotes>https://github.com/Owen-Krueger/EntityFrameworkCore.Concurrency/releases/tag/v8.3.1</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
